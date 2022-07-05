@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 rootProject.name = "MyCaseStudy"
 include ':app'
 include ':core'
+include ':domain'
+include ':data'

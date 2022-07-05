@@ -42,6 +42,7 @@ android {
 dependencies {
 
     implementation project(path: ':core')
+    implementation project(path: ':data')
 
     kapt "androidx.room:room-compiler:$room_version"
 
