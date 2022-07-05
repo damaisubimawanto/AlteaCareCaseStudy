@@ -41,6 +41,7 @@ dependencies {
     implementation 'androidx.databinding:databinding-runtime:7.2.1'
     api "androidx.constraintlayout:constraintlayout:$androidx_constraint_layout"
     implementation "androidx.core:core-ktx:$androidx_core"
+    api "androidx.recyclerview:recyclerview:$androidx_recyclerview"
     implementation "androidx.room:room-ktx:$room_version"
     implementation "androidx.room:room-runtime:$room_version"
     implementation 'com.google.android.material:material:1.6.1'

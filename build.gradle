@@ -3,6 +3,7 @@ buildscript {
     ext.androidx_appcompat = '1.4.2'
     ext.androidx_constraint_layout = '2.1.4'
     ext.androidx_core = '1.8.0'
+    ext.androidx_recyclerview = '1.2.1'
     ext.room_version = '2.4.2'
     ext.koin_version = '3.2.0-beta-1'
     ext.intuit_version = '1.0.6'
