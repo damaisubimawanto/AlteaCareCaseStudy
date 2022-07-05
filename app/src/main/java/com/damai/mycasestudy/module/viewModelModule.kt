@@ -8,5 +8,9 @@ import org.koin.dsl.module
  * Created by damai.subimawanto on 7/5/2022.
  */
 val viewModelModule = module {
-    viewModel { MainViewModel() }
+    viewModel {
+        MainViewModel(
+            homeUseCase = get()
+        )
+    }
 }

@@ -7,7 +7,9 @@ import kotlinx.coroutines.withContext
 /**
  * Created by damai.subimawanto on 7/5/2022.
  */
-abstract class NetworkResource<T>(private val schedulerProvider: SchedulerProvider) {
+abstract class NetworkResource<T: BaseModel>(
+    private val schedulerProvider: SchedulerProvider
+) {
 
     fun asFlow(): Flow<Resource<T>> = flow {
         // check if should fetch data from remote or not

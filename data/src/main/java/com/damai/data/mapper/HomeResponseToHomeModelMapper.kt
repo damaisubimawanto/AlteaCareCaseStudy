@@ -1,19 +1,20 @@
 package com.damai.data.mapper
 
 import com.damai.core.BaseMapper
+import com.damai.data.model.HomeDataModel
 import com.damai.data.model.HomeModel
 import com.damai.data.response.HomeResponse
 
 /**
  * Created by damai.subimawanto on 7/5/2022.
  */
-class HomeResponseToHomeModelListMapper : BaseMapper<HomeResponse, List<HomeModel>>() {
+class HomeResponseToHomeModelMapper : BaseMapper<HomeResponse, HomeModel>() {
 
-    override fun map(value: HomeResponse): List<HomeModel> {
-        val dataList = arrayListOf<HomeModel>()
+    override fun map(value: HomeResponse): HomeModel {
+        val dataList = arrayListOf<HomeDataModel>()
         value.data?.map { dataValue ->
             dataList.add(
-                HomeModel(
+                HomeDataModel(
                     id = dataValue.doctorId,
                     name = dataValue.name,
                     about = dataValue.about,
@@ -29,6 +30,12 @@ class HomeResponseToHomeModelListMapper : BaseMapper<HomeResponse, List<HomeMode
                 )
             )
         }
-        return dataList
+
+        return HomeModel(
+            data = dataList
+        ).apply {
+            status = value.status
+            message = value.message
+        }
     }
 }

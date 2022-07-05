@@ -10,5 +10,5 @@ import kotlinx.coroutines.flow.Flow
 interface HomeRepository {
 
     @Throws(Exception::class)
-    fun getHome(): Flow<Resource<List<HomeModel>>>
+    fun getHome(): Flow<Resource<HomeModel>>
 }

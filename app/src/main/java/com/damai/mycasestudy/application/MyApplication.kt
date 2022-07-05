@@ -1,10 +1,7 @@
 package com.damai.mycasestudy.application
 
 import android.app.Application
-import com.damai.mycasestudy.module.mapperModule
-import com.damai.mycasestudy.module.networkModule
-import com.damai.mycasestudy.module.repositoryModule
-import com.damai.mycasestudy.module.viewModelModule
+import com.damai.mycasestudy.module.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -29,7 +26,8 @@ class MyApplication : Application() {
                     viewModelModule,
                     networkModule,
                     repositoryModule,
-                    mapperModule
+                    mapperModule,
+                    useCaseModule
                 )
             )
         }

@@ -1,15 +1,10 @@
 package com.damai.data.model
 
+import com.damai.core.BaseModel
+
 /**
  * Created by damai.subimawanto on 7/5/2022.
  */
 data class HomeModel(
-    val id: String?,
-    val name: String?,
-    val about: String?,
-    val overview: String?,
-    val photoUrl: String?,
-    val priceText: String?,
-    val specialization: String?,
-    val hospital: String?
-)
+    val data: List<HomeDataModel>?
+) : BaseModel()
