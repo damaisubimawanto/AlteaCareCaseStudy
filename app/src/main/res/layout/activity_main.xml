@@ -8,6 +8,10 @@
         <import type="android.view.View" />
 
         <variable
+            name="view"
+            type="com.damai.mycasestudy.presentation.MainView" />
+
+        <variable
             name="vm"
             type="com.damai.core.BaseViewModel" />
 

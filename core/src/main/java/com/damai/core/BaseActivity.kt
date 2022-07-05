@@ -22,10 +22,10 @@ abstract class BaseActivity<VM: BaseViewModel> : AppCompatActivity() {
                 activity = this,
                 layoutResId = layoutResourceId
             )
-            /*binding.setVariable(BR.vm, viewModel)*/
+            binding.setVariable(BR.vm, viewModel)
             binding.lifecycleOwner = this
             if (this is BaseView) {
-                /*binding.setVariable(BR.view, this)*/
+                binding.setVariable(BR.view, this)
             }
         } else {
             setContentView(layoutResourceId)
