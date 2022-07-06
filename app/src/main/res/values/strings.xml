@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MyCaseStudy</string>
+    <string name="content_description">Content Description</string>
 </resources>

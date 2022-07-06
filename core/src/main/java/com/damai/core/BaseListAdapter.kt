@@ -11,11 +11,7 @@ abstract class BaseListAdapter<T, VH: BaseViewHolder<T>>(
 ): ListAdapter<T, VH>(diffUtil) {
 
     override fun getItemCount(): Int {
-        return if (currentList.isEmpty()) {
-            0
-        } else {
-            currentList.size
-        }
+        return currentList.size
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {

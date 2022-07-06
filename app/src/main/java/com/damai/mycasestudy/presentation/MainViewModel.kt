@@ -33,7 +33,7 @@ class MainViewModel(
                 loading.value = false
                 when (resource) {
                     is Resource.Success -> {
-
+                        doctorListResponse.value = resource.model?.data
                     }
                     is Resource.Error -> {
 
