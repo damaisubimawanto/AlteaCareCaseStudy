@@ -7,6 +7,8 @@
 
         <import type="android.view.View" />
 
+        <import type="com.damai.core.BindingAdapterUtils" />
+
         <variable
             name="data"
             type="com.damai.data.model.HomeDataModel" />
@@ -27,6 +29,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:contentDescription="@string/content_description"
+            app:thumbnail="@{data.photoUrl}"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -34,7 +37,7 @@
 
         <Space
             android:id="@+id/spaceThumbnailRight"
-            android:layout_width="@dimen/_4sdp"
+            android:layout_width="@dimen/_7sdp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@+id/ivThumbnail"
             app:layout_constraintTop_toTopOf="parent" />
@@ -57,9 +60,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/_8sdp"
-            android:text="@{data.hospital}"
             android:textColor="@color/white"
             android:textSize="@dimen/_8ssp"
+            app:hospital="@{data.hospital}"
+            app:specialization="@{data.specialization}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/spaceThumbnailRight"
             app:layout_constraintTop_toBottomOf="@+id/tvName"
@@ -69,12 +73,14 @@
             android:id="@+id/tvAbout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{data.about}"
             android:textColor="@color/white"
             android:textSize="@dimen/_8ssp"
+            app:about="@{data.about}"
+            app:layout_constraintBottom_toTopOf="@+id/tvPrice"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/spaceThumbnailRight"
             app:layout_constraintTop_toBottomOf="@+id/tvHospitalAndSpecialization"
+            app:layout_constraintVertical_bias="0"
             tools:text="[ABOUT]" />
 
         <TextView
