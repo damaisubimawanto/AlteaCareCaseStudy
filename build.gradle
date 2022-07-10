@@ -8,8 +8,10 @@ buildscript {
     ext.koin_version = '3.2.0-beta-1'
     ext.intuit_version = '1.0.6'
     ext.kotlinx_coroutines = '1.6.2'
+    ext.google_material = '1.6.1'
     ext.glide_version = '4.13.2'
     ext.glide_okhttp_version = '4.12.0'
+    ext.retrofit_version = '2.9.0'
 }
 
 plugins {
