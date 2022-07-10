@@ -17,6 +17,16 @@ class MainActivity : BaseActivity<MainViewModel>(), ViewDataBindingOwner<Activit
     private lateinit var doctorListAdapter: DoctorListAdapter
     private var searchTimer: Timer? = null
 
+    private val mSearchTimerTask: TimerTask
+        get() = object : TimerTask() {
+            override fun run() {
+                if (checkIfActivityFinished()) return
+                runOnUiThread {
+                    viewModel.doSearch()
+                }
+            }
+        }
+
     override var originalBinding: ActivityMainBinding? = null
     override val layoutResourceId: Int = R.layout.activity_main
     override val viewModel: MainViewModel by viewModel()
@@ -30,6 +40,12 @@ class MainActivity : BaseActivity<MainViewModel>(), ViewDataBindingOwner<Activit
         observeLoading()
         observeAllDoctorList()
         observeSearchedList()
+    }
+
+    override fun onDestroy() {
+        searchTimer?.cancel()
+        searchTimer = null
+        super.onDestroy()
     }
 
     /**
@@ -141,9 +157,15 @@ class MainActivity : BaseActivity<MainViewModel>(), ViewDataBindingOwner<Activit
         binding.etKeywords.afterTextChanged {
             searchTimer?.cancel()
             if (it.isNullOrBlank()) {
-                viewModel.keyword = it.toString()
-            } else {
                 viewModel.keyword = null
+                viewModel.doSearch()
+            } else {
+                viewModel.keyword = it.toString()
+
+                /* Hit to Search API */
+                searchTimer = Timer().apply {
+                    schedule(mSearchTimerTask, 1_000L)
+                }
             }
         }
         binding.etKeywords.setOnEditorActionListener { textView, actionId, _ ->

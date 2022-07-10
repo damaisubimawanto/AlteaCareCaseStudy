@@ -38,4 +38,8 @@ abstract class BaseActivity<VM: BaseViewModel> : AppCompatActivity() {
             clearDataBinding()
         }
     }
+
+    fun checkIfActivityFinished(): Boolean {
+        return isFinishing || isDestroyed
+    }
 }
