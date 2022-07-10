@@ -23,6 +23,72 @@
         android:background="@color/white"
         tools:context=".presentation.MainActivity">
 
+        <View
+            android:id="@+id/viewKeywordsBackground"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/grey_400"
+            app:layout_constraintBottom_toBottomOf="@+id/etKeywords"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etKeywords"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_keywords"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineRightPadding"
+            app:layout_constraintStart_toEndOf="@+id/guidelineLeftPadding"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Space
+            android:id="@+id/spaceBetweenFilters"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_8sdp"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineCenter"
+            app:layout_constraintStart_toStartOf="@+id/guidelineCenter"
+            app:layout_constraintTop_toBottomOf="@+id/etKeywords" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvHospitalFilter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/grey_500"
+            android:gravity="center_vertical"
+            android:paddingTop="@dimen/_2sdp"
+            android:paddingLeft="@dimen/_6sdp"
+            android:paddingRight="@dimen/_6sdp"
+            android:paddingBottom="@dimen/_2sdp"
+            android:text="@string/filter_hospital_default"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10ssp"
+            app:drawableRightCompat="@drawable/ic_baseline_arrow_drop_down_24"
+            app:layout_constraintEnd_toStartOf="@+id/spaceBetweenFilters"
+            app:layout_constraintStart_toEndOf="@+id/guidelineLeftPadding"
+            app:layout_constraintTop_toBottomOf="@+id/spaceBetweenFilters" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSpecializationFilter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/grey_500"
+            android:gravity="center_vertical"
+            android:paddingTop="@dimen/_2sdp"
+            android:paddingLeft="@dimen/_6sdp"
+            android:paddingRight="@dimen/_6sdp"
+            android:paddingBottom="@dimen/_2sdp"
+            android:text="@string/filter_specialization_default"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10ssp"
+            app:drawableRightCompat="@drawable/ic_baseline_arrow_drop_down_24"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineRightPadding"
+            app:layout_constraintStart_toEndOf="@+id/spaceBetweenFilters"
+            app:layout_constraintTop_toBottomOf="@+id/spaceBetweenFilters" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvDoctors"
             android:layout_width="0dp"
@@ -30,11 +96,55 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:itemCount="4"
+            app:layout_constraintTop_toBottomOf="@+id/tvHospitalFilter"
+            tools:itemCount="5"
             tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_recycler_doctor"
             tools:orientation="vertical" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressCircular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            app:indeterminateAnimationType="contiguous"
+            app:indicatorColor="@array/progress_colors"
+            app:indicatorSize="@dimen/_25sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:trackThickness="@dimen/_3sdp" />
+
+        <!-- ADDITIONAL GUIDE FOR CONSTRAINTLAYOUT -->
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="etKeywords,tvHospitalFilter,tvSpecializationFilter,
+            rvDoctors,viewKeywordsBackground" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineLeftPadding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/_8sdp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineRightPadding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/_8sdp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

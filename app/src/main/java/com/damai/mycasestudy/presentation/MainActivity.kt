@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.damai.core.BaseActivity
 import com.damai.core.ViewDataBindingOwner
+import com.damai.core.gone
+import com.damai.core.visible
 import com.damai.mycasestudy.R
 import com.damai.mycasestudy.databinding.ActivityMainBinding
 import com.damai.mycasestudy.presentation.adapter.DoctorListAdapter
@@ -44,10 +46,12 @@ class MainActivity : BaseActivity<MainViewModel>(), ViewDataBindingOwner<Activit
         observeData(viewModel.loading) {
             when (it) {
                 true -> {
-
+                    binding.progressCircular.visible()
+                    binding.groupMain.gone()
                 }
                 else -> {
-
+                    binding.progressCircular.gone()
+                    binding.groupMain.visible()
                 }
             }
         }
