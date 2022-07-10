@@ -4,4 +4,7 @@
     <string name="hint_keywords">Search by keywords</string>
     <string name="filter_hospital_default">Hospital</string>
     <string name="filter_specialization_default">Specialization</string>
+
+    <string name="title_hospital_filter_dialog">Filter by Hospital</string>
+    <string name="title_specialization_filter_dialog">Filter by Specialization</string>
 </resources>

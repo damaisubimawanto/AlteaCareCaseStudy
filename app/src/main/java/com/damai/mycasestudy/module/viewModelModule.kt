@@ -10,7 +10,11 @@ import org.koin.dsl.module
 val viewModelModule = module {
     viewModel {
         MainViewModel(
-            homeUseCase = get()
+            homeUseCase = get(),
+            hospitalFilterCreationMapper = get(),
+            specializationFilterCreationMapper = get(),
+            hospitalTextListMapper = get(),
+            specializationTextListMapper = get()
         )
     }
 }

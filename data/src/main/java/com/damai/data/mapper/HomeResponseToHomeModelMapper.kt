@@ -12,7 +12,7 @@ class HomeResponseToHomeModelMapper : BaseMapper<HomeResponse, HomeModel>() {
 
     override fun map(value: HomeResponse): HomeModel {
         val dataList = arrayListOf<HomeDataModel>()
-        value.data?.map { dataValue ->
+        value.data?.forEach { dataValue ->
             dataList.add(
                 HomeDataModel(
                     id = dataValue.doctorId,
@@ -21,7 +21,13 @@ class HomeResponseToHomeModelMapper : BaseMapper<HomeResponse, HomeModel>() {
                     overview = dataValue.overview,
                     photoUrl = dataValue.photo?.url,
                     priceText = dataValue.price?.formatted,
+                    specializationId = dataValue.specialization?.id,
                     specialization = dataValue.specialization?.name,
+                    hospitalId = if (dataValue.hospital.isNullOrEmpty()) {
+                        ""
+                    } else {
+                        dataValue.hospital!![0].id
+                    },
                     hospital = if (dataValue.hospital.isNullOrEmpty()) {
                         ""
                     } else {

@@ -1,6 +1,6 @@
 package com.damai.mycasestudy.module
 
-import com.damai.data.mapper.HomeResponseToHomeModelMapper
+import com.damai.data.mapper.*
 import org.koin.dsl.module
 
 /**
@@ -8,4 +8,8 @@ import org.koin.dsl.module
  */
 val mapperModule = module {
     factory { HomeResponseToHomeModelMapper() }
+    factory { HomeDataModelListToHospitalModelListMapper() }
+    factory { HomeModelListToSpecializationModelListMapper() }
+    factory { HospitalModelListToStringListMapper() }
+    factory { SpecializationModelListToStringListMapper() }
 }

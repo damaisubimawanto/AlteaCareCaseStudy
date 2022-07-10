@@ -10,6 +10,8 @@ data class HomeDataModel(
     val overview: String?,
     val photoUrl: String?,
     val priceText: String?,
+    val specializationId: String?,
     val specialization: String?,
+    val hospitalId: String?,
     val hospital: String?
 )
