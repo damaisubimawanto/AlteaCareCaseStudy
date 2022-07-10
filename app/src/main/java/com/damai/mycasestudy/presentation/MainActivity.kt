@@ -51,10 +51,12 @@ class MainActivity : BaseActivity<MainViewModel>(), ViewDataBindingOwner<Activit
                         items: List<CharSequence>
                     ) {
                         viewModel.lastHospitalSelections = indices
+                        viewModel.doSearch()
                     }
 
                     override fun onAllCleared() {
                         viewModel.lastHospitalSelections = IntArray(0)
+                        viewModel.doSearch()
                     }
                 }
             )
@@ -80,10 +82,12 @@ class MainActivity : BaseActivity<MainViewModel>(), ViewDataBindingOwner<Activit
                         items: List<CharSequence>
                     ) {
                         viewModel.lastSpecializationSelections = indices
+                        viewModel.doSearch()
                     }
 
                     override fun onAllCleared() {
                         viewModel.lastSpecializationSelections = IntArray(0)
+                        viewModel.doSearch()
                     }
                 }
             )

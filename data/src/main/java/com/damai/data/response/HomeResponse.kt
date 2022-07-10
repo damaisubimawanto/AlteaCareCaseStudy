@@ -9,5 +9,5 @@ import com.google.gson.annotations.SerializedName
 class HomeResponse: BaseResponse() {
 
     @SerializedName("data")
-    var data: List<HomeDataResponse>? = null
+    val data: List<HomeDataResponse>? = null
 }

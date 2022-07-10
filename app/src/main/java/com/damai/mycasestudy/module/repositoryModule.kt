@@ -12,7 +12,8 @@ val repositoryModule = module {
         HomeRepositoryImpl(
             homeService = get(),
             schedulerProvider = get(),
-            homeResponseMapper = get()
+            homeResponseMapper = get(),
+            searchedHomeResponseMapper = get()
         )
     }
 }

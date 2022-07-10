@@ -11,4 +11,11 @@ interface HomeRepository {
 
     @Throws(Exception::class)
     fun getHome(): Flow<Resource<HomeModel>>
+
+    @Throws(Exception::class)
+    fun getSearchedDoctors(
+        doctorName: String?,
+        hospitalIds: List<String>?,
+        specializationIds: List<String>?
+    ): Flow<Resource<HomeModel>>
 }

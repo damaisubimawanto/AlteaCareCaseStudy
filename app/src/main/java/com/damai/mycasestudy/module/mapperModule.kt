@@ -8,6 +8,7 @@ import org.koin.dsl.module
  */
 val mapperModule = module {
     factory { HomeResponseToHomeModelMapper() }
+    factory { HomeResponseToSearchedHomeModelMapper() }
     factory { HomeDataModelListToHospitalModelListMapper() }
     factory { HomeModelListToSpecializationModelListMapper() }
     factory { HospitalModelListToStringListMapper() }

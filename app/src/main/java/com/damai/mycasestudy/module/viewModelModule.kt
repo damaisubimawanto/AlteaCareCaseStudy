@@ -11,6 +11,7 @@ val viewModelModule = module {
     viewModel {
         MainViewModel(
             homeUseCase = get(),
+            searchDoctorsUseCase = get(),
             hospitalFilterCreationMapper = get(),
             specializationFilterCreationMapper = get(),
             hospitalTextListMapper = get(),
