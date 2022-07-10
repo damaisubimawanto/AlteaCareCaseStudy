@@ -32,42 +32,58 @@ class MainActivity : BaseActivity<MainViewModel>(), ViewDataBindingOwner<Activit
         observeSearchedList()
     }
 
+    /**
+     * Callback from MainView.
+     */
     override fun onHospitalFilterClicked() {
         viewModel.generateHospitalTextList()?.let {
             DialogUtil(
                 mContext = this,
                 mLifecycleOwner = this
-            ).showSingleChoiceList(
+            ).showMultipleChoicesList(
                 title = getString(R.string.title_hospital_filter_dialog),
                 items = it,
-                callback = object : DialogUtil.DialogSingleChoiceCallback {
+                initialSelectionItems = viewModel.lastHospitalSelections,
+                callback = object : DialogUtil.DialogMultipleChoicesCallback {
                     override fun onSelection(
                         dialog: MaterialDialog,
-                        which: Int,
-                        text: CharSequence?
+                        indices: IntArray,
+                        items: List<CharSequence>
                     ) {
+                        viewModel.lastHospitalSelections = indices
+                    }
 
+                    override fun onAllCleared() {
+                        viewModel.lastHospitalSelections = IntArray(0)
                     }
                 }
             )
         }
     }
 
+    /**
+     * Callback from MainView.
+     */
     override fun onSpecializationFilterClicked() {
         viewModel.generateSpecializationTextList()?.let {
             DialogUtil(
                 mContext = this,
                 mLifecycleOwner = this
-            ).showSingleChoiceList(
+            ).showMultipleChoicesList(
                 title = getString(R.string.title_specialization_filter_dialog),
                 items = it,
-                callback = object : DialogUtil.DialogSingleChoiceCallback {
+                initialSelectionItems = viewModel.lastSpecializationSelections,
+                callback = object : DialogUtil.DialogMultipleChoicesCallback {
                     override fun onSelection(
                         dialog: MaterialDialog,
-                        which: Int,
-                        text: CharSequence?
+                        indices: IntArray,
+                        items: List<CharSequence>
                     ) {
+                        viewModel.lastSpecializationSelections = indices
+                    }
 
+                    override fun onAllCleared() {
+                        viewModel.lastSpecializationSelections = IntArray(0)
                     }
                 }
             )

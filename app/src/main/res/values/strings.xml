@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MyCaseStudy</string>
     <string name="content_description">Content Description</string>
-    <string name="hint_keywords">Search by keywords</string>
+    <string name="hint_keywords">Search doctors by name</string>
     <string name="filter_hospital_default">Hospital</string>
     <string name="filter_specialization_default">Specialization</string>
 

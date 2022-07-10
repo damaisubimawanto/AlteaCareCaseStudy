@@ -28,6 +28,8 @@ class MainViewModel(
     var keyword: String? = null
     var hospitalFilterList: List<HospitalModel>? = null
     var specializationFilterList: List<SpecializationModel>? = null
+    var lastHospitalSelections = IntArray(0)
+    var lastSpecializationSelections = IntArray(0)
 
     val loading = MutableLiveData(false)
     val doctorListResponse = MutableLiveData<List<HomeDataModel>>()
