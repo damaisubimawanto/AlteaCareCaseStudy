@@ -2,6 +2,8 @@ package com.damai.mycasestudy.presentation
 
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.damai.core.*
@@ -119,6 +121,18 @@ class MainActivity : BaseActivity<MainViewModel>(), ViewDataBindingOwner<Activit
                 false
             )
             adapter = doctorListAdapter
+
+            val decoration = DividerItemDecoration(
+                this@MainActivity,
+                DividerItemDecoration.VERTICAL
+            )
+            ContextCompat.getDrawable(
+                this@MainActivity,
+                R.drawable.line_divider
+            )?.let {
+                decoration.setDrawable(it)
+            }
+            addItemDecoration(decoration)
         }
     }
 

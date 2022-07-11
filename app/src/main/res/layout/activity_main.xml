@@ -61,6 +61,7 @@
             android:layout_height="wrap_content"
             android:background="@color/grey_500"
             android:ellipsize="end"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
             android:gravity="center_vertical"
             android:maxLines="1"
             android:onClick="@{v -> view.onHospitalFilterClicked()}"
@@ -83,6 +84,7 @@
             android:layout_height="wrap_content"
             android:background="@color/grey_500"
             android:ellipsize="end"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
             android:gravity="center_vertical"
             android:maxLines="1"
             android:onClick="@{v -> view.onSpecializationFilterClicked()}"
@@ -99,14 +101,25 @@
             app:layout_constraintStart_toEndOf="@+id/spaceBetweenFilters"
             app:layout_constraintTop_toBottomOf="@+id/spaceBetweenFilters" />
 
+        <Space
+            android:id="@+id/spaceBetweenFilterAndList"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_8sdp"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineCenter"
+            app:layout_constraintStart_toStartOf="@+id/guidelineCenter"
+            app:layout_constraintTop_toBottomOf="@+id/tvHospitalFilter" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvDoctors"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:paddingLeft="@dimen/_8sdp"
+            android:paddingRight="@dimen/_8sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvHospitalFilter"
+            app:layout_constraintTop_toBottomOf="@+id/spaceBetweenFilterAndList"
             tools:itemCount="5"
             tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_recycler_doctor"
