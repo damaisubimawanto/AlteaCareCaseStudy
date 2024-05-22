@@ -8,6 +8,6 @@ import retrofit2.http.GET
  */
 interface HomeService {
 
-    @GET("/v3/c9a2b598-9c93-4999-bd04-0194839ef2dc")
+    @GET("/v3/372dbe94-bf6e-4ece-87ce-d127cc6bbc8a")
     suspend fun getHome(): HomeResponse
 }
