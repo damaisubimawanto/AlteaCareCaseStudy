@@ -2,41 +2,35 @@ package com.damai.core
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 
 /**
  * Created by damai.subimawanto on 7/5/2022.
  */
-abstract class BaseActivity<VM: BaseViewModel> : AppCompatActivity() {
+abstract class BaseActivity<VB: ViewDataBinding, VM: BaseViewModel> : AppCompatActivity() {
 
     abstract val layoutResourceId: Int
     abstract val viewModel: VM
 
+    private var _binding: VB? = null
+    val binding
+        get() = requireNotNull(_binding)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setLayoutIfDefined()
-    }
-
-    private fun setLayoutIfDefined() {
-        if (this is ViewDataBindingOwner<*>) {
-            setContentViewBinding(
-                activity = this,
-                layoutResId = layoutResourceId
-            )
-            binding.setVariable(BR.vm, viewModel)
-            binding.lifecycleOwner = this
-            if (this is BaseView) {
-                binding.setVariable(BR.view, this)
-            }
-        } else {
-            setContentView(layoutResourceId)
+        _binding = DataBindingUtil.setContentView(this, layoutResourceId)
+        binding.setVariable(BR.vm, viewModel)
+        binding.lifecycleOwner = this
+        if (this is BaseView) {
+            binding.setVariable(BR.view, this)
         }
+        setContentView(binding.root)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        if (this is ViewDataBindingOwner<*>) {
-            clearDataBinding()
-        }
+        _binding = null
     }
 
     fun checkIfActivityFinished(): Boolean {

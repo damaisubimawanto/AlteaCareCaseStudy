@@ -12,6 +12,8 @@ abstract class NetworkResource<T: BaseModel>(
 ) {
 
     fun asFlow(): Flow<Resource<T>> = flow {
+        emit(Resource.Loading)
+
         // check if should fetch data from remote or not
         if (shouldFetchFromRemote()) {
             val remoteResponse = safeApiCall(dispatcher = schedulerProvider.io()) {

@@ -1,6 +1,7 @@
 package com.damai.mycasestudy.presentation
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.damai.core.BaseViewModel
 import com.damai.core.Resource
 import com.damai.data.mapper.*
@@ -10,7 +11,7 @@ import com.damai.data.model.SearchDoctorsModel
 import com.damai.data.model.SpecializationModel
 import com.damai.domain.HomeUseCase
 import com.damai.domain.SearchDoctorsUseCase
-import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
@@ -26,8 +27,8 @@ class MainViewModel(
 ) : BaseViewModel() {
 
     var keyword: String? = null
-    var hospitalFilterList: List<HospitalModel>? = null
-    var specializationFilterList: List<SpecializationModel>? = null
+    private var hospitalFilterList: List<HospitalModel>? = null
+    private var specializationFilterList: List<SpecializationModel>? = null
     var lastHospitalSelections = IntArray(0)
     var lastSpecializationSelections = IntArray(0)
 
@@ -40,13 +41,14 @@ class MainViewModel(
     }
 
     private fun getHome() {
-        launch {
-            homeUseCase().onStart {
-                loading.value = true
-            }.collect { resource ->
-                loading.value = false
+        viewModelScope.launch(Dispatchers.Main) {
+            homeUseCase().collect { resource ->
                 when (resource) {
+                    is Resource.Loading -> {
+                        loading.value = true
+                    }
                     is Resource.Success -> {
+                        loading.value = false
                         doctorListResponse.value = resource.model?.data
                         hospitalFilterList = hospitalFilterCreationMapper.map(
                             resource.model?.data
@@ -56,9 +58,8 @@ class MainViewModel(
                         )
                     }
                     is Resource.Error -> {
-
+                        loading.value = false
                     }
-                    else -> {}
                 }
             }
         }
@@ -97,7 +98,7 @@ class MainViewModel(
             doctorListResponse.value = doctorListResponse.value
             return
         }
-        launch {
+        viewModelScope.launch(Dispatchers.Main) {
             val requestBody = SearchDoctorsModel(
                 doctorName = keyword,
                 hospitalIds = generateSelectedHospitalIdList(),

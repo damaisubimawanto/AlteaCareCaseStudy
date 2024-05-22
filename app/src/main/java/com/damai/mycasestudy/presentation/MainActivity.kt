@@ -13,8 +13,7 @@ import com.damai.mycasestudy.presentation.adapter.DoctorListAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
-class MainActivity : BaseActivity<MainViewModel>(), ViewDataBindingOwner<ActivityMainBinding>,
-    MainView {
+class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainView {
 
     private lateinit var doctorListAdapter: DoctorListAdapter
     private var searchTimer: Timer? = null
@@ -29,7 +28,6 @@ class MainActivity : BaseActivity<MainViewModel>(), ViewDataBindingOwner<Activit
             }
         }
 
-    override var originalBinding: ActivityMainBinding? = null
     override val layoutResourceId: Int = R.layout.activity_main
     override val viewModel: MainViewModel by viewModel()
 
